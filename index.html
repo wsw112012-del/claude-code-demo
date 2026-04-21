@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intellect — AI Education</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f9f7;
+      --ink: #0d0d0d;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --dark-bg: #0d0d0d;
+      --dark-text: #f9f9f7;
+      --radius: 12px;
+      --max: 1100px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(249,249,247,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--ink); }
+    .btn-lg { padding: 14px 32px; font-size: 1rem; }
+    .btn-white {
+      background: #fff;
+      color: var(--ink);
+    }
+    .btn-white:hover { background: #f0f0ee; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 96px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+      max-width: 460px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-image img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+    }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--ink);
+      color: var(--dark-text);
+    }
+    .stats-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 96px 24px;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 48px;
+    }
+    .section-title span { color: var(--accent); }
+
+    /* ── COURSES ── */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .course-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .course-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+    .course-card img {
+      width: 100%;
+      display: block;
+      height: 180px;
+      object-fit: cover;
+    }
+    .course-body { padding: 20px; }
+    .course-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .tag-blue  { background: #eff6ff; color: #1d4ed8; }
+    .tag-green { background: #f0fdf4; color: #15803d; }
+    .tag-purple{ background: #faf5ff; color: #7c3aed; }
+    .course-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .course-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .course-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .step-num {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .step p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+    .testi-quote {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+    .testi-quote::before { content: '\201C'; color: var(--accent); font-size: 1.4rem; line-height: 0; vertical-align: -0.3em; margin-right: 4px; }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testi-author img {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .author-name { font-size: 0.9rem; font-weight: 600; }
+    .author-role { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+      padding: 96px 24px;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+    .cta-banner p {
+      font-size: 1.05rem;
+      color: #9ca3af;
+      margin-bottom: 36px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 40px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links a { font-size: 0.85rem; color: var(--muted); }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 64px 24px; }
+      .hero-image { order: -1; }
+      .stats-inner { grid-template-columns: 1fr; gap: 24px; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 32px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">Intelle<span>ct</span></div>
+      <ul class="nav-links">
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Tracks</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Pricing</a></li>
+      </ul>
+      <a href="#" class="btn btn-primary">Enroll Free</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section>
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-tag">New — AI Fundamentals Track</div>
+        <h1>Learn <em>AI</em> that shapes the world</h1>
+        <p>Hands-on courses built by researchers and practitioners. Go from zero to building real AI applications — at your own pace.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary btn-lg">Start Learning</a>
+          <a href="#" class="btn btn-outline btn-lg">Browse Courses</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://placehold.co/600x420/e0e7ff/2563eb?text=AI+Learning" alt="AI learning interface" />
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div>
+        <div class="stat-num">24+</div>
+        <div class="stat-label">Expert-led courses</div>
+      </div>
+      <div>
+        <div class="stat-num">48k</div>
+        <div class="stat-label">Active students</div>
+      </div>
+      <div>
+        <div class="stat-num">94%</div>
+        <div class="stat-label">Completion rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <div class="section">
+    <div class="section-label">Featured Courses</div>
+    <div class="section-title">Start with the <span>essentials</span></div>
+    <div class="courses-grid">
+
+      <div class="course-card">
+        <img src="https://placehold.co/400x180/dbeafe/1d4ed8?text=Machine+Learning" alt="Machine Learning" />
+        <div class="course-body">
+          <span class="course-tag tag-blue">Machine Learning</span>
+          <div class="course-title">ML Foundations: Models & Math</div>
+          <div class="course-desc">Understand supervised learning, loss functions, and gradient descent from first principles.</div>
+          <div class="course-meta">
+            <span>12 lessons</span>
+            <span>~6 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <img src="https://placehold.co/400x180/dcfce7/15803d?text=Neural+Networks" alt="Neural Networks" />
+        <div class="course-body">
+          <span class="course-tag tag-green">Deep Learning</span>
+          <div class="course-title">Neural Networks in Practice</div>
+          <div class="course-desc">Build and train convolutional and recurrent networks using PyTorch with real datasets.</div>
+          <div class="course-meta">
+            <span>18 lessons</span>
+            <span>~10 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <img src="https://placehold.co/400x180/ede9fe/7c3aed?text=LLMs+%26+Prompting" alt="LLMs" />
+        <div class="course-body">
+          <span class="course-tag tag-purple">Generative AI</span>
+          <div class="course-title">LLMs & Prompt Engineering</div>
+          <div class="course-desc">Master large language models, prompt design, and building AI-powered apps with APIs.</div>
+          <div class="course-meta">
+            <span>10 lessons</span>
+            <span>~5 hours</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section">
+      <div class="section-label">How It Works</div>
+      <div class="section-title">Three steps to <span>mastery</span></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Choose your track</h3>
+          <p>Pick a structured learning path tailored to your goal — beginner, practitioner, or researcher.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Learn by doing</h3>
+          <p>Every lesson includes interactive notebooks, quizzes, and real projects you can ship.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Earn credentials</h3>
+          <p>Complete a track and receive a verifiable certificate to share with employers or clients.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="section">
+    <div class="section-label">Testimonials</div>
+    <div class="section-title">Loved by <span>learners</span></div>
+    <div class="testimonials-grid">
+
+      <div class="testi-card">
+        <div class="testi-quote">
+          The LLMs course completely changed how I think about building products. The pacing is perfect and the projects are genuinely challenging. Highly recommend to any engineer wanting to break into AI.
+        </div>
+        <div class="testi-author">
+          <img src="https://placehold.co/44x44/e0e7ff/2563eb?text=AK" alt="Avatar" />
+          <div>
+            <div class="author-name">Arjun K.</div>
+            <div class="author-role">Software Engineer, Berlin</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote">
+          I went through four other platforms before finding Intellect. The depth here is unmatched — it's the only place that explains the actual math without losing you in the weeds.
+        </div>
+        <div class="testi-author">
+          <img src="https://placehold.co/44x44/dcfce7/15803d?text=MP" alt="Avatar" />
+          <div>
+            <div class="author-name">Maya P.</div>
+            <div class="author-role">Data Scientist, Toronto</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <h2>Ready to build with AI?</h2>
+    <p>Join 48,000 students already learning. Your first course is free.</p>
+    <a href="#" class="btn btn-white btn-lg">Get started — it's free</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="logo">Intelle<span style="color:var(--accent)">ct</span></div>
+      <ul class="footer-links">
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="footer-copy">© 2026 Intellect. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
