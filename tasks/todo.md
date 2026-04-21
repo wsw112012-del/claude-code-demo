@@ -33,14 +33,14 @@ Build out a fully functional AI education landing page starting from the current
 - [ ] Deploy to GitHub Pages or Vercel
 
 ### Push to GitHub
-- [ ] Initialize git repository (`git init`)
-- [ ] Stage all files (`git add`)
-- [ ] Create initial commit
-- [ ] Create new GitHub repository via `gh repo create`
-- [ ] Set remote and push (`git push -u origin main`)
+- [x] Initialize git repository (`git init`)
+- [x] Stage all files (`git add`)
+- [x] Create initial commit
+- [x] Create new GitHub repository via `gh repo create`
+- [x] Set remote and push (`git push -u origin master`)
 
 ---
 
 ## Review
 
-_(to be filled in after task completion)_
+Pushed the project to GitHub. Created a new public repository `wsw112012-del/claude-code-demo` via `gh repo create`, added it as `origin`, and pushed the `master` branch. The repo is live at https://github.com/wsw112012-del/claude-code-demo.
